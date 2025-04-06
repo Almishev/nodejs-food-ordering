@@ -10,7 +10,7 @@ const createFoodController = async (req, res) => {
       price,
       imageUrl,
       foodTags,
-      catgeory,
+      category,
       code,
       isAvailabe,
       resturnat,
@@ -29,7 +29,7 @@ const createFoodController = async (req, res) => {
       price,
       imageUrl,
       foodTags,
-      catgeory,
+      category,
       code,
       isAvailabe,
       resturnat,
@@ -72,6 +72,25 @@ const getAllFoodsController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Erro In Get ALL Foods API",
+      error,
+    });
+  }
+};
+
+// GET ALLL FOODS BY CATEGORY
+const getAllFoodsByCatController = async (req, res) => {
+  try {
+    const foods = await foodModal.find().populate("category"); 
+    res.status(200).send({
+      success: true,
+      totalFoods: foods.length,
+      foods,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in fetching foods",
       error,
     });
   }
@@ -163,7 +182,7 @@ const updateFoodController = async (req, res) => {
       price,
       imageUrl,
       foodTags,
-      catgeory,
+      category,
       code,
       isAvailabe,
       resturnat,
@@ -177,7 +196,7 @@ const updateFoodController = async (req, res) => {
         price,
         imageUrl,
         foodTags,
-        catgeory,
+        category,
         code,
         isAvailabe,
         resturnat,
@@ -307,4 +326,5 @@ module.exports = {
   deleteFoodController,
   placeOrderController,
   orderStatusController,
+  getAllFoodsByCatController,
 };

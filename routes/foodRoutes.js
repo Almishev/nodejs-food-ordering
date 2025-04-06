@@ -10,6 +10,7 @@ const {
   deleteFoodController,
   placeOrderController,
   orderStatusController,
+  getAllFoodsByCatController,
 } = require("../controllers/foodController");
 const adminMiddleware = require("../middlewares/adminMiddleware");
 
@@ -21,6 +22,9 @@ router.post("/create", authMiddleware, createFoodController);
 
 //GET ALL FOOD
 router.get("/getAll", getAllFoodsController);
+
+// GET FOOD BY CATEGORY
+router.get("/getByCategory", getAllFoodsByCatController);
 
 // GET SINGLE FOOD
 router.get("/get/:id", getSingleFoodController);

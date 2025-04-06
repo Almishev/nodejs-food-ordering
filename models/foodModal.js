@@ -23,8 +23,10 @@ const foodSchema = new mongoose.Schema(
     foodTags: {
       type: String,
     },
-    catgeory: {
-      type: String,
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category", 
+      required: [true, "Food category is required"],
     },
     code: {
       type: String,
@@ -33,7 +35,7 @@ const foodSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    resturnat: {
+    restrnat: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Resturant",
     },
